@@ -1,2 +1,2 @@
 # QuickBite
-This is Food dilivary website
+This is Food dilivary website.
