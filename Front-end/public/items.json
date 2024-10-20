@@ -1,0 +1,71 @@
+[
+    {
+        "id":1,
+        "name": "Veggie Burger",
+        "description": "A delicious burger with a veggie patty, lettuce, tomato, and special sauce.",
+        "price": 8.50,
+        "restaurant": "60d5f9b9c2a1f2a5d4e8b458",
+        "imageUrl": "https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?t=st=1727269354~exp=1727272954~hmac=89b9c4948a73981ae437cfc4c4aefbf8d7dae1dc433843cfb4a06ff4b8e2b64a&w=740",
+        "discount": 5, 
+        "createdAt": "2024-09-25T12:35:40.123Z",
+        "updatedAt": "2024-09-25T12:35:40.123Z"
+      }
+      ,
+      {
+        "id":2,
+        "name": "Spaghetti Carbonara",
+        "description": "Classic Italian pasta dish with creamy sauce, pancetta, and Parmesan cheese.",
+        "price": 13.99,
+        "restaurant": "60d5f9b9c2a1f2a5d4e8b459",
+        "imageUrl": "https://img.freepik.com/free-photo/spaghetti-with-mixed-ingredients-white-plate-black-background-top-view_114579-15114.jpg?t=st=1727269567~exp=1727273167~hmac=d856f510f86b20b87c4605630446204b1a600e91118f6c3d7e54440b42abb9ad&w=996",
+        "discount": 20, 
+        "createdAt": "2024-09-25T12:40:40.123Z",
+        "updatedAt": "2024-09-25T12:40:40.123Z"
+      }
+      ,
+      {
+        "id":2,
+        "name": "Caesar Salad",
+        "description": "Fresh romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
+        "price": 7.99,
+        "restaurant": "60d5f9b9c2a1f2a5d4e8b460",
+        "imageUrl": "https://img.freepik.com/free-photo/caesar-salad-with-fried-shrimps_140725-6065.jpg?t=st=1727269658~exp=1727273258~hmac=1439ab5fc22e0c0d9088a62ee58df022639ef7a935e03921905e3bc54f29d669&w=740",
+        "discount": 10, 
+        "createdAt": "2024-09-25T12:45:40.123Z",
+        "updatedAt": "2024-09-25T12:45:40.123Z"
+      }
+      ,
+      {
+        "id":4,
+        "name": "Margherita Pizza",
+        "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
+        "price": 9.99,
+        "restaurant": "60d5f9b9c2a1f2a5d4e8b456",
+        "imageUrl": "https://img.freepik.com/free-photo/delicious-pizza-traditional-italian-pizza_1328-3991.jpg?t=st=1727269721~exp=1727273321~hmac=f8c69b470ad4c127baf9d138bf8cb82e2d0038f01af0984d6214c22f4c0ee1fc&w=996",
+        "discount": 15, 
+        "createdAt": "2024-09-25T12:25:40.123Z",
+        "updatedAt": "2024-09-25T12:25:40.123Z"
+      },
+      {
+        "id":4,
+        "name": "Margherita Pizza",
+        "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
+        "price": 9.99,
+        "restaurant": "60d5f9b9c2a1f2a5d4e8b456",
+        "imageUrl": "https://img.freepik.com/free-photo/delicious-pizza-traditional-italian-pizza_1328-3991.jpg?t=st=1727269721~exp=1727273321~hmac=f8c69b470ad4c127baf9d138bf8cb82e2d0038f01af0984d6214c22f4c0ee1fc&w=996",
+        "discount": 15, 
+        "createdAt": "2024-09-25T12:25:40.123Z",
+        "updatedAt": "2024-09-25T12:25:40.123Z"
+      },
+      {
+        "id":4,
+        "name": "Margherita Pizza",
+        "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
+        "price": 9.99,
+        "restaurant": "60d5f9b9c2a1f2a5d4e8b456",
+        "imageUrl": "https://img.freepik.com/free-photo/delicious-pizza-traditional-italian-pizza_1328-3991.jpg?t=st=1727269721~exp=1727273321~hmac=f8c69b470ad4c127baf9d138bf8cb82e2d0038f01af0984d6214c22f4c0ee1fc&w=996",
+        "discount": 15, 
+        "createdAt": "2024-09-25T12:25:40.123Z",
+        "updatedAt": "2024-09-25T12:25:40.123Z"
+      }      
+]
