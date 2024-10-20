@@ -4,6 +4,6 @@
 This project is food dilivary app.
 
 # Developer
-Vishal Pawar
+Vishal Pawar.
 
 
