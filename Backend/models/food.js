@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Review = require('./review.js');
 
 const foodSchema = new Schema(
     {
@@ -37,6 +38,11 @@ const foodSchema = new Schema(
         enum: ['veg', 'non-veg'], 
         required: true 
       },
+      review:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Review',
+      },
+    ],
     }, 
     { 
       timestamps: true 

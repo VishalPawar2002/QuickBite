@@ -1,14 +1,20 @@
-// DiscountItem.jsx
-import React from "react";
-import items from "../../public/items.json";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Cards from "./Cards";
+import Cards from "../componants/Cards";
+import Axios from "axios";
 
 export default function DiscountItem() {
-  const filterData = items.filter((data) => data.discount > 0);
-  console.log(filterData);
+  const [png, setPng] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await Axios.get("http://localhost:8080/QuickBite/png");
+      setPng(res.data);
+    };
+    fetchData();
+  }, []);
 
   let settings = {
     dots: true,
@@ -46,32 +52,13 @@ export default function DiscountItem() {
   };
 
   return (
-    <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 sm:mt[-30px] ">
-      <div>
-        {/* <h1 className="font-semibold text-xl pb-2">Limited-Time Deals</h1> */}
-        {/* <p className="text-black opacity-60 hover:opacity-90">
-          Hurry, These Deals Won’t Last Long! Don’t miss your chance to grab
-          amazing discounts on your favorite items.
-          <br />
-          Shop now and take advantage of these limited-time offers before
-          they’re gone for good!
-        </p> */}
-      </div>
-      <div>
-        <Slider {...settings}>
-          {filterData.map((item) => {
-            return <Cards item={item} key={item.id} />;
-          })}
-        </Slider>
-      </div>
+    <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 ">
+      <Slider {...settings}>
+        {png.map((item) => (
+          <Cards item={item} key={item._id} />
+        ))}
+      </Slider>
     </div>
   );
 }
-
-// Limited-Time Deals
-// <p className="text-black opacity-60 hover:opacity-90">
-//             Hurry, These Deals Won’t Last Long! Don’t miss your chance to grab amazing discounts on your favorite items.
-//             <br />
-//             Shop now and take advantage of these limited-time offers before they’re gone for good!
-//           </p>
 

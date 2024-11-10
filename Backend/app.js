@@ -1,10 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Food = require("./models/food.js");
+const Review = require("./models/review.js");
+const PNG = require('./models/pngData.js');
 const app = express();
 const port = process.env.PORT || 8080;
 const cors = require("cors");
 const methodOverride = require("method-override");
+const review = require("./models/review.js");
 
 mongoose
   .connect("mongodb://localhost:27017/QuickBite", {
@@ -38,11 +41,36 @@ app.get("/QuickBite/menu/:id", async (req, res) => {
   res.send(item);
 });
 
-// app.post("/QuickBite/menu/:id/show", async (req, res) => {
-//   let { id } = req.params;
-//   console.log("ID from URL:", id); // Logging the id from the URL
-//   res.json({ message: `ID received: ${id}` }); // Responding to client for verification
-// });
+//Post review
+app.post("/QuickBite/menu/:id/review", async (req, res) => {
+  const { rating, comment } = req.body;
+  const { id } = req.params;
+
+  try {
+    const item = await Food.findById(id);
+    if (!item) {
+      return res.status(404).send({ message: "Food item not found" });
+    }
+
+    const review = new Review({ rating, comment });
+    await review.save();
+    console.log(review);
+    item.review.push(review);
+    await item.save();
+
+    res.status(200).send({ message: 'Review added successfully', item });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send({ message: 'Failed to add review', error });
+  }
+});
+
+
+//Png Get request
+app.get('/QuickBite/png',async(req, res) =>{
+  const data = await PNG.find();
+  res.send(data);
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

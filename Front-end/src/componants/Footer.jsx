@@ -3,8 +3,9 @@ import React from 'react';
 export default function Footer() {
   return (
     <div>
+      
+      <footer className="footer footer-center p-10 bg-gray-300 text-gray-800 rounded-t-lg ">
       <hr />
-      <footer className="footer footer-center p-10 bg-gray-300 text-gray-800 rounded-t-lg mt-40">
         <nav className="grid grid-flow-col gap-4">
           <a className="link hover:text-black transition">About us</a>
           <a className="link hover:text-black transition">Contact</a>
