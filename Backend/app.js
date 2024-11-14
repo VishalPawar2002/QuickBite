@@ -37,7 +37,7 @@ app.get("/QuickBite/menu", async (req, res) => {
 
 app.get("/QuickBite/menu/:id", async (req, res) => {
   const { id } = req.params;
-  const item = await Food.findById(id);
+  const item = await Food.findById(id).populate("review"); 
   res.send(item);
 });
 
@@ -65,6 +65,11 @@ app.post("/QuickBite/menu/:id/review", async (req, res) => {
   }
 });
 
+app.delete("/QuickBite/menu/:id/review/:reviewId",async(req,res)=>{
+  let {id, reviewId} = req.params;
+  await Food.findByIdAndUpdate(id,{$pull :{review : reviewId}});
+  await Review.findByIdAndDelete(reviewId);
+});
 
 //Png Get request
 app.get('/QuickBite/png',async(req, res) =>{

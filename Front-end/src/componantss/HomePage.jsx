@@ -1,40 +1,9 @@
-// import React from "react";
-// import Banar from "../componants/Banar";
-// import DiscountItem from "../componants/DiscountItem";
-// import Baner2 from "../componants/Baner2";
-
-// function Home() {
-//   return (
-//     <>
-//       <div className="flex flex-col min-h-screen">
-//         {" "}
-//         <div className="flex-1">
-//           {" "}
-//           <Banar />{" "}
-//         </div>{" "}
-//         <div className="flex-1">
-//           {" "}
-//           <DiscountItem />{" "}
-//         </div>{" "}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Home;
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-
+import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import CarouselBanar from '@/componantss/CarouselBanar';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Search, ShoppingBag, User, Menu, Star, Clock, ArrowRight, Utensils, Bike, Gift } from 'lucide-react';
-import PopularCategories from '@/componantss/PopularCategories';
-
 
 
 
@@ -50,7 +19,13 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
+  const carouselImages = [
+    "/placeholder.svg?height=400&width=1200&text=Delicious+Dishes",
+    "/placeholder.svg?height=400&width=1200&text=Fresh+Ingredients",
+    "/placeholder.svg?height=400&width=1200&text=Quick+Delivery",
+    "/placeholder.svg?height=400&width=1200&text=Local+Restaurants",
+    "/placeholder.svg?height=400&width=1200&text=Special+Offers",
+  ];
 
   const foodItems = [
     { name: "Pizza", image: "/placeholder.svg?height=200&width=200&text=Pizza" },
@@ -61,15 +36,90 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-yellow-50 to-orange-50">
-      
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+        <div className="container flex h-16 items-center">
+          <a href="/" className="flex items-center space-x-2">
+            <div className="relative">
+              <ShoppingBag className="h-8 w-8 text-orange-500" />
+              <Utensils className="h-4 w-4 text-yellow-500 absolute -top-1 -right-1 transform rotate-45" />
+            </div>
+            <span className="font-bold text-xl text-orange-500">TastyExpress</span>
+          </a>
+          <nav className="ml-auto flex items-center space-x-4">
+            <a href="/restaurants" className="text-sm font-medium hover:text-orange-500 transition-colors">
+              Restaurants
+            </a>
+            <a href="/deals" className="text-sm font-medium hover:text-orange-500 transition-colors">
+              Deals
+            </a>
+            <a href="/account" className="text-sm font-medium hover:text-orange-500 transition-colors">
+              My Account
+            </a>
+            <Button variant="ghost" size="icon" className="hover:bg-orange-100 rounded-full">
+              <User className="h-4 w-4" />
+              <span className="sr-only">Account</span>
+            </Button>
+            <Button variant="ghost" size="icon" className="md:hidden hover:bg-orange-100 rounded-full">
+              <Menu className="h-4 w-4" />
+              <span className="sr-only">Menu</span>
+            </Button>
+          </nav>
+        </div>
+      </header>
       <main className="flex-1">
         <section className="w-full">
-          <CarouselBanar/>
+          <Carousel className="w-full">
+            <CarouselContent>
+              {carouselImages.map((src, index) => (
+                <CarouselItem key={index}>
+                  <div className="relative w-full h-[400px]">
+                    <img
+                      src={src}
+                      alt={`Featured dish ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                      <div className="text-center text-white p-4">
+                        <h1 className="text-4xl font-bold mb-4">Discover Delicious Food Near You</h1>
+                        <div className="max-w-md mx-auto">
+                          <form className="flex space-x-2">
+                            <Input className="flex-1 bg-white/90 placeholder:text-gray-500 rounded-full text-black"
+                              placeholder="Enter your address..."
+                              type="text"/>
+                            <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white rounded-full">
+                              <Search className="mr-2 h-4 w-4" />
+                              Find Food
+                            </Button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
+          </Carousel>
         </section>
         <section className="w-full py-12 md:py-24">
-          
-            
-          <PopularCategories/>
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-8 text-gray-800">
+              Popular Categories
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {foodItems.map((item, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-[200px] h-[200px] rounded-full shadow-lg transition-transform hover:scale-105"
+                  />
+                  <p className="mt-2 text-lg font-semibold">{item.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
           <div className="container px-4 md:px-6">

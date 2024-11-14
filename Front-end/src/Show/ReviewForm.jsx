@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-export default function ReviewForm() {
+export default function ReviewForm({ onAddReview }) {  // Accept `onAddReview` as a prop
   const [review, setReview] = useState({ rating: 0, comment: '' });
   const [errors, setErrors] = useState({ rating: '', comment: '' });
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setReview({
@@ -38,15 +37,20 @@ export default function ReviewForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      // Immediately add the review locally
+      const tempReview = { ...review, _id: Date.now().toString(), createdAt: new Date().toISOString() };
+      onAddReview(tempReview); // Add temporary review to the list
+     
       try {
         const response = await axios.post(`http://localhost:8080/QuickBite/menu/${id}/review`, review);
         setReview({ rating: 0, comment: '' });
-        console.log(response.data);
+        setErrors({ rating: '', comment: '' });
       } catch (error) {
         console.error('Error:', error);
       }
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit} id='myForm' noValidate>
@@ -78,19 +82,16 @@ export default function ReviewForm() {
             onChange={handleChange}
             required
           />
-          
-        
-        <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-          <Button
-            type="submit"
-            variant="contained"
-            endIcon={<SendIcon />}
-            
-          >
-            Send
-          </Button>
-        </div>
-        {errors.comment && <div className="text-red-500 text-xs italic">{errors.comment}</div>}
+          <div className="absolute bottom-4 right-4 flex items-center space-x-2">
+            <Button
+              type="submit"
+              variant="contained"
+              endIcon={<SendIcon />}
+            >
+              Send
+            </Button>
+          </div>
+          {errors.comment && <div className="text-red-500 text-xs italic">{errors.comment}</div>}
         </div>
       </div>
     </form>

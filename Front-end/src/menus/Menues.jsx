@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "../componants/Menu";
+import Menu from "../componantss/Menu";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 
